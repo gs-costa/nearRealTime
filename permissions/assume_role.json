@@ -1,0 +1,20 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "",
+            "Effect": "Allow",
+            "Principal": {
+                "Service": [
+                    "firehose.amazonaws.com",
+                    "redshift.amazonaws.com",
+                    "dms.amazonaws.com",
+                    "kinesisanalytics.amazonaws.com",
+                    "glue.amazonaws.com",
+                    "cloudwatch.amazonaws.com"
+                ]
+            },
+            "Action": "sts:AssumeRole"
+        }
+    ]
+}

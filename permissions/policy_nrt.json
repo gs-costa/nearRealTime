@@ -1,0 +1,118 @@
+{
+    "Statement": [
+        {
+            "Action": "kinesis:*",
+            "Effect": "Allow",
+            "Resource": "arn:aws:kinesis:*:*:*/*"
+        },
+        {
+            "Action": [
+                "rds:*",
+                "application-autoscaling:DeleteScalingPolicy",
+                "application-autoscaling:DeregisterScalableTarget",
+                "application-autoscaling:DescribeScalableTargets",
+                "application-autoscaling:DescribeScalingActivities",
+                "application-autoscaling:DescribeScalingPolicies",
+                "application-autoscaling:PutScalingPolicy",
+                "application-autoscaling:RegisterScalableTarget",
+                "cloudwatch:*",
+                "sns:ListSubscriptions",
+                "sns:ListTopics",
+                "sns:Publish",
+                "logs:DescribeLogStreams",
+                "logs:GetLogEvents",
+                "outposts:GetOutpostInstanceTypes",
+                "devops-guru:GetResourceCollection"
+            ],
+            "Effect": "Allow",
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ec2:CreateNetworkInterface",
+                "ec2:DescribeAvailabilityZones",
+                "ec2:DescribeInternetGateways",
+                "ec2:DescribeSecurityGroups",
+                "ec2:DescribeSubnets",
+                "ec2:DescribeVpcs",
+                "ec2:DeleteNetworkInterface",
+                "ec2:ModifyNetworkInterfaceAttribute",
+                "sts:*"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Action": "pi:*",
+            "Effect": "Allow",
+            "Resource": "arn:aws:pi:*:*:metrics/rds/*"
+        },
+        {
+            "Action": "iam:CreateServiceLinkedRole",
+            "Condition": {
+                "StringLike": {
+                    "iam:AWSServiceName": [
+                        "rds.amazonaws.com",
+                        "rds.application-autoscaling.amazonaws.com"
+                    ]
+                }
+            },
+            "Effect": "Allow",
+            "Resource": "*"
+        },
+        {
+            "Action": [
+                "devops-guru:SearchInsights",
+                "devops-guru:ListAnomaliesForInsight"
+            ],
+            "Condition": {
+                "ForAllValues:StringEquals": {
+                    "devops-guru:ServiceNames": [
+                        "RDS"
+                    ]
+                },
+                "Null": {
+                    "devops-guru:ServiceNames": "false"
+                }
+            },
+            "Effect": "Allow",
+            "Resource": "*"
+        },
+        {
+            "Action": [
+                "ec2:*"
+            ],
+            "Effect": "Allow",
+            "Resource": "*"
+        },
+        {
+            "Action": [
+                "s3:*"
+            ],
+            "Effect": "Allow",
+            "Resource": "arn:aws:s3:::*"
+        },
+        {
+            "Action": [
+                "mgh:CreateProgressUpdateStream"
+            ],
+            "Effect": "Allow",
+            "Resource": "arn:aws:mgh:*:*:progressUpdateStream/DMS"
+        },
+        {
+            "Action": [
+                "mgh:*"
+            ],
+            "Effect": "Allow",
+            "Resource": "arn:aws:mgh:*:*:progressUpdateStream/DMS/*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "glue:*"
+            ],
+            "Resource": "*"
+        }
+    ],
+    "Version": "2012-10-17"
+}
