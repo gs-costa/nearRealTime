@@ -1,34 +1,24 @@
 # nearRealTime
-Project with pipeline on AWS in near real-time update, with architecture with IAM, VPC, RDS, DMS, Kinesis, S3 and Redshift services.
-The services were provided by Infra As Code (Terraform).
+Developed an exciting AWS project that combines a streamlined pipeline for near real-time updates. The architecture is powered by essential AWS services like IAM, VPC, RDS, DMS, Kinesis, S3, and Redshift. To simplify deployment and management, we've used Infrastructure as Code (Terraform) to seamlessly provision these services.
 
 ![image](https://github.com/gs-costa/nearRealTime/assets/97529915/5f50f081-de97-4db2-99a6-cea44fae58ac)
 
-The proposal was to add random data via Python script in a relational database, in this case RDS with PostgreSQL engine was used. 
-AWS DMS has the role of performing CDC and only sending new records or updates from the relational database to AWS Kinesis. 
-The latter receives the data through Kinesis Data Stream, accumulates it over a period of time and then loads it into AWS Redshift, the data warehouse, using Kinesis Firehose. S3 serves as an intermediary in loading Kinesis for Redshift.
+The proposal involved utilizing a Python script to inject randomized data into a relational database, specifically an RDS instance powered by the PostgreSQL engine.To achieve this, AWS DMS takes on the responsibility of conducting Change Data Capture (CDC), selectively transmitting only new records and updates from the relational database to AWS Kinesis.
+Kinesis Data Stream acts as the recipient, collecting and aggregating the data over a specific timeframe, which is then efficiently loaded into AWS Redshift, the designated data warehouse, with the aid of Kinesis Firehose. During this process, S3 plays a vital role as an intermediary for loading data from Kinesis into Redshift.
 
-There's some important details to consider before starting the pipeline. In the RDS instance to allow DMS execute CDC, have to set the following parameters group:
+This project addresses a genuine problem by identifying the specific stage at which new clients abandon the onboarding process for creating their bank account. By analyzing where a significant number of clients encounter obstacles, we can pinpoint potential bugs or issues that may be hindering their progress.
 
-parameter {
-    name  = "session_replication_role"
-    value = "replica"
-  }
+Before starting the pipeline, it is crucial to take into account certain important details. In order to enable DMS to execute CDC in the RDS instance, the following parameter group needs to be configured:
 
-  parameter {
-    name         = "rds.logical_replication"
-    value        = 1
-    apply_method = "pending-reboot"
-  }
+Parameter: session_replication_role
+Value: replica
 
-  parameter {
-    name         = "wal_sender_timeout"
-    value        = 0
-    apply_method = "pending-reboot"
-  }
+Parameter: rds.logical_replication
+Value: 1
 
-It's easier to see how to apply it on https://github.com/gs-costa/nearRealTime/blob/main/terraform/rds.tf.
-Another detail is create an endpoint, with only private subnets, to connect Kinesis to the VPC used on RDS and DMS.
+Parameter: wal_sender_timeout
+Value: 0
 
-With this information in hand, you will be able to create your own pipeline in near real time. If not, I'm available for questions!
-Good Luck!
+To understand its application better, you can refer to the following link: https://github.com/gs-costa/nearRealTime/blob/main/terraform/rds.tf. Additionally, it's important to note that in order to connect Kinesis to the VPC used for RDS and DMS, it is necessary to create an endpoint exclusively in private subnets.
+
+Now that you have all the necessary information, you can easily whip up your very own pipeline in no time! But if you need any help or have questions, feel free to reach out to me. Good luck!
