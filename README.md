@@ -1,12 +1,12 @@
 # nearRealTime
-Developed an exciting AWS project that combines a streamlined pipeline for near real-time updates. The architecture is powered by essential AWS services like IAM, VPC, RDS, DMS, Kinesis, S3, and Redshift. To simplify deployment and management, we've used Infrastructure as Code (Terraform) to seamlessly provision these services.
+This project addresses a genuine problem by identifying the specific stage at which new clients abandon the onboarding process for creating their bank account. By analyzing where a significant number of clients encounter obstacles, we can pinpoint potential bugs or issues that may be hindering their progress.
+
+Facing to solve it, developed an exciting AWS project that combines a streamlined pipeline for near real-time updates. The architecture is powered by essential AWS services like IAM, VPC, RDS, DMS, Kinesis, S3, and Redshift. To simplify deployment and management, we've used Infrastructure as Code (Terraform) to seamlessly provision these services.
 
 ![image](https://github.com/gs-costa/nearRealTime/assets/97529915/5f50f081-de97-4db2-99a6-cea44fae58ac)
 
 The proposal involved utilizing a Python script to inject randomized data into a relational database, specifically an RDS instance powered by the PostgreSQL engine.To achieve this, AWS DMS takes on the responsibility of conducting Change Data Capture (CDC), selectively transmitting only new records and updates from the relational database to AWS Kinesis.
 Kinesis Data Stream acts as the recipient, collecting and aggregating the data over a specific timeframe, which is then efficiently loaded into AWS Redshift, the designated data warehouse, with the aid of Kinesis Firehose. During this process, S3 plays a vital role as an intermediary for loading data from Kinesis into Redshift.
-
-This project addresses a genuine problem by identifying the specific stage at which new clients abandon the onboarding process for creating their bank account. By analyzing where a significant number of clients encounter obstacles, we can pinpoint potential bugs or issues that may be hindering their progress.
 
 Before starting the pipeline, it is crucial to take into account certain important details. In order to enable DMS to execute CDC in the RDS instance, the following parameter group needs to be configured:
 
