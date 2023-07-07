@@ -1,4 +1,4 @@
-# nearRealTime
+# Near Real-time
 This project addresses a genuine problem by identifying the specific stage at which new clients abandon the onboarding process for creating their bank account. By analyzing where a significant number of clients encounter obstacles, we can pinpoint potential bugs or issues that may be hindering their progress.
 
 Facing to solve it, developed an exciting AWS project that combines a streamlined pipeline for near real-time updates. The architecture is powered by essential AWS services like IAM, VPC, RDS, DMS, Kinesis, S3, and Redshift. To simplify deployment and management, we've used Infrastructure as Code (Terraform) to seamlessly provision these services.
