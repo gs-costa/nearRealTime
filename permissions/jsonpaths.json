@@ -1,0 +1,13 @@
+{
+    "jsonpaths": [
+        "$['data']['invoiceid']",
+        "$['data']['itemid']",
+        "$['data']['category']",
+        "$['data']['price']",
+        "$['data']['quantity']",
+        "$['data']['orderdate']",
+        "$['data']['destinationstate']",
+        "$['data']['shippingtype']",
+        "$['data']['referral']"
+    ]
+}
