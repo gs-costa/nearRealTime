@@ -1,7 +1,7 @@
 # Near Real-time
-This project addresses a genuine problem by identifying the specific stage at which new clients abandon the onboarding process for creating their bank account. By analyzing where a significant number of clients encounter obstacles, we can pinpoint potential bugs or issues that may be hindering their progress.
+This project addresses a genuine problem by identifying the specific stage at which new clients abandon the onboarding process for creating their bank account. By analyzing where a significant number of clients encounter obstacles, can pinpoint potential bugs or issues that may be hindering their progress.
 
-Facing to solve it, developed an exciting AWS project that combines a streamlined pipeline for near real-time updates. The architecture is powered by essential AWS services like IAM, VPC, RDS, DMS, Kinesis, S3, and Redshift. To simplify deployment and management, we've used Infrastructure as Code (Terraform) to seamlessly provision these services.
+Facing to solve it, developed an exciting AWS project that combines a streamlined pipeline for near real-time updates. The architecture is powered by essential AWS services like IAM, VPC, RDS, DMS, Kinesis, S3, and Redshift. To simplify deployment and management, used Infrastructure as Code (Terraform) to seamlessly provision these services.
 
 ![near_Real-time drawio](https://github.com/gs-costa/nearRealTime/assets/97529915/6921d3f9-6011-41a7-9fec-1b48bc6aeacf)
 
